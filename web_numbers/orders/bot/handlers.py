@@ -1,8 +1,7 @@
-
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message
 
-from orders.bot.database import get_users_for_mailing_list, insert_telegram_user
+from orders.bot.database import insert_telegram_user
 from orders.bot.louder import dp
 
 
@@ -15,6 +14,7 @@ async def show_start_menu(message: Message):
         await message.answer('Ваш ID успешно добавлен в базу, '
                              'вы получите уведомление, если ваш заказ будет задерживаться')
     except Exception as err:
+        print(err)
         await message.answer('Здравствуйте, рады снова Вас видеть')
 
 

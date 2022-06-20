@@ -13,10 +13,10 @@ def get_order_models_from_db() -> list:
 def get_delay_orders() -> list:
     """Возвращает список заказов, которые уже опаздывают по доставке"""
     today = date.today()
+    _del_or_create_or_update_order_models()
     orders_query = Order.objects.all()
     result = []
     for order in orders_query:
-        print(order.delivery_date, today)
         if order.delivery_date < today:
             result.append(str(order.order_number))
     return result
