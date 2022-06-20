@@ -12,3 +12,20 @@ services:
     ports:
       - "54321:5432"
     restart: always
+
+  bot:
+    container_name: my-bot-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: 54321
+      DB_USER: numbers_user
+      DB_PASSWORD: 123123
+      DB_NAME: numbers_db
+    restart: always
+    links:
+      - db
+    depends_on:
+      - db

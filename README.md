@@ -18,12 +18,27 @@
 
     4) установите зависимости из requirements.txt.
 
-    5) выполните команду docker-compose up -d
-
-Docker-compose запустит контейнер с БД 
-выполните миграции
+!!!Важно, если проверяющий использует mac с чипом М1, то перед выполнением следующей команды,
+нужно выполнить команду:
     
-    6) ./manage.py migrate
+    export DOCKER_DEFAULT_PLATFORM=linux/amd64
+    
+если этого не сделать. то при подключении к БД будет пробрасываться ошибка:
+pg_connect(): Unable to connect to PostgreSQL server: SCRAM authentication requires libpq version 10 or above.
+    
+    5) выполните команду docker-compose build
+
+    6) выполните команду docker-compose up -d
+
+Docker-compose запустит контейнер с БД и контейнер с ботом
+    
+    7) найдите в телеграмме бот @numbers_myakotin_test_bot и отправте ему /start
+
+Выполните миграции, для этого 
+
+    6) перейдите в директорию web_numbers в терминале
+    
+    7) выполните команду ./manage.py migrate
 
 Запустите тестовый сервер
 

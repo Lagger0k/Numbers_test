@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.db.models import Sum
 
 from orders.models import Order
-from orders.services.service import get_order_models_from_db
+from orders.services.bot_mailing import send_message
+from orders.services.service import get_order_models_from_db, get_delay_orders
 
 
 def orders_page(request):
@@ -21,6 +22,7 @@ def orders_page(request):
 
 def inform_about_delay(request):
     if request.method == 'POST':
-        # здесь должна быть логика уведомлений через телеграм, для этого у нас должен быть запущен контейнер с ботом,
-        # который при старте юзером, сохраняет его user_id в модель users и потом использует его для отправки сообщений
+        delay_orders = get_delay_orders()
+        text = 'Заказы:\n' + ' \n'.join(delay_orders) + '\n' 'опаздывают'
+        send_message(text)
         return redirect('home')

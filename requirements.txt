@@ -22,7 +22,7 @@ idna==3.3
 multidict==6.0.2
 oauthlib==3.2.0
 protobuf==3.20.1
-psycopg2==2.9.3
+psycopg2-binary==2.9.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pyparsing==3.0.9
@@ -37,3 +37,7 @@ sqlparse==0.4.2
 uritemplate==4.1.1
 urllib3==1.26.9
 yarl==1.7.2
+
+aiogram~=2.20
+SQLAlchemy~=1.4.37
+python-dotenv~=0.20.0
